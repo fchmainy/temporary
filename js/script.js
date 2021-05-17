@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#plus-adjective-icon").click(function () {
-        $("#word-popup").show();
+        $("#adjective-popup").show();
     });
     //Contact Form validation on click event
     $("#adjective-form").on("submit", function () {
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#plus-animal-icon").click(function () {
-        $("#word-popup").show();
+        $("#animal-popup").show();
     });
     //Contact Form validation on click event
     $("#animal-form").on("submit", function () {
@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#plus-color-icon").click(function () {
-        $("#word-popup").show();
+        $("#color-popup").show();
     });
     //Contact Form validation on click event
     $("#color-form").on("submit", function () {
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#plus-location-icon").click(function () {
-        $("#word-popup").show();
+        $("#location-popup").show();
     });
     //Contact Form validation on click event
     $("#location-form").on("submit", function () {

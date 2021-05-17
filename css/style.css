@@ -1,3 +1,12 @@
+header {
+ height: 800px;
+ text-align: center;
+ background: url('./images/background.jpeg');
+ color: white;
+ padding: 100px;
+ background-repeat: no-repeat;
+        }
+
 body {
     color: #232323;
     font-size: 0.95em;    
@@ -27,7 +36,37 @@ div#success {
     padding: 15px;
 }
 
-#word-popup {
+#adjective-popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    color: #676767;
+}
+#animal-popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    color: #676767;
+}
+#color-popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    color: #676767;
+}
+#location-popup {
     position: absolute;
     top: 0px;
     left: 0px;

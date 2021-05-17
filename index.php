@@ -1,39 +1,22 @@
  <HTML>
-        <body style="background-color:black;">
                 <HEAD>
                         <title>Random Name Generator</title>
-                        <style>
-                                body {
-                                background-image: url("./images/background.jpeg");
-                                }
-                        </style>
-                        <style type="text/css">
-                        body {
-                                position: relative;
-                                height: 100vh;
-                                margin: 0;
-                                }
-
-                        h1 {
-                                position: absolute;
-                                text-align: center;
-                                top: 65%;
-                                left: 50%;
-                                margin-right: -50%;
-                                transform: translate(-50%);
-                                border-radius: 15px 50px;
-                                background: linear-gradient(to top left, DimGray, transparent 95%);
-                                padding: 15px;
-                                width: 700px;
-                                height: 50px;
-                                justify-content: center;
-                        </style>
                         <script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
 			<script src="./js/script.js"></script> 
+			<style>
+				body {
+ 					height: 800px;
+					text-align: center;
+ 					background: url('./images/background.jpeg');
+ 					color: white;
+ 					padding: 100px;
+ 					background-repeat: no-repeat;
+        			}
+			</style>
 			<link rel="stylesheet" href="./css/style.css" />
                 </HEAD>
-                <BODY>
-                    <div id="word-popup">
+                <BODY> 
+                    <div id="adjective-popup">
                         <form class="word-form" action="" id="adjective-form" method="post" enctype="multipart/form-data">
                             <h2>Add an adjective</h2>
                             <div>
@@ -49,7 +32,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="word-popup">
+                    <div id="animal-popup">
                         <form class="word-form" action="" id="animal-form" method="post" enctype="multipart/form-data">
                             <h2>Add an animal</h2>
                             <div>
@@ -65,7 +48,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="word-popup">
+                    <div id="color-popup">
                         <form class="word-form" action="" id="color-form" method="post" enctype="multipart/form-data">
                             <h2>Add an color</h2>
                             <div>
@@ -81,7 +64,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="word-popup">
+                    <div id="location-popup">
                         <form class="word-form" action="" id="location-form" method="post" enctype="multipart/form-data">
                             <h2>Add a location</h2>
                             <div>
