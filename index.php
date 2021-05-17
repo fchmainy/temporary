@@ -110,7 +110,35 @@
                                 echo '<td><div style="font-family:Courier; color:green;">valley</div></td>';
 
 
-
+				if (! empty($POST["send"])) {
+					if (! empty($_POST["adjective"])) {
+						$adjective = filter_var($_POST["adjective"], FILTER_SANITIZE_STRING);
+						$postURL='http://adjective.'.$NS.'/adjective';
+						$postBODY["adjective"] = $adjective;
+					}
+					if (! empty($_POST["adjective"])) {
+						$animal = filter_var($_POST["animal"], FILTER_SANITIZE_STRING);
+                                                $postURL='http://animal.'.$NS.'/animal';
+                                                $postBODY["animal"] = $animal;
+					}
+					if (! empty($_POST["color"])) {
+						$color = filter_var($_POST["color"], FILTER_SANITIZE_STRING);
+                                                $postURL='http://color.'.$NS.'/color';
+                                                $postBODY["color"] = $color;
+					}
+					if (! empty($_POST["location"])) {
+						$location = filter_var($_POST["location"], FILTER_SANITIZE_STRING);
+                                                $postURL='http://location.'.$NS.'/location';
+                                                $postBODY["location"] = $location;
+					}
+					$postCH = curl_init();
+					curl_setopt($postCH, CURLOPT_RETURNTRANSFER, true);
+                                	curl_setopt($postCH, CURLOPT_URL,$url);
+                                	$res=curl_exec($postCH);
+                                	curl_close($postCH);
+					
+					echo '<div id="success">Your new word as been successfully posted!</div>'
+				}
                     ?>
                                 </tr>
                                 <tr>
