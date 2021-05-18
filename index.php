@@ -17,7 +17,7 @@
                 </HEAD>
                 <BODY>
                     <div id="adjective-popup">
-                        <form class="word-form" action="" id="adjective-form" method="post" enctype="multipart/form-data">
+                        <form class="word-form" action="" id="adjective-form" method="post" enctype="application/json">
                             <h2>Add an adjective</h2>
                             <div>
                                 <div>
@@ -33,7 +33,7 @@
                         </form>
                     </div>
                     <div id="animal-popup">
-                        <form class="word-form" action="" id="animal-form" method="post" enctype="multipart/form-data">
+                        <form class="word-form" action="" id="animal-form" method="post" enctype="application/json">
                             <h2>Add an animal</h2>
                             <div>
                                 <div>
@@ -49,7 +49,7 @@
                         </form>
                     </div>
                     <div id="color-popup">
-                        <form class="word-form" action="" id="color-form" method="post" enctype="multipart/form-data">
+                        <form class="word-form" action="" id="color-form" method="post" enctype="application/json">
                             <h2>Add an color</h2>
                             <div>
                                 <div>
@@ -65,7 +65,7 @@
                         </form>
                     </div>
                     <div id="location-popup">
-                        <form class="word-form" action="" id="location-form" method="post" enctype="multipart/form-data">
+                        <form class="word-form" action="" id="location-form" method="post" enctype="application/json">
                             <h2>Add a location</h2>
                             <div>
                                 <div>
@@ -109,43 +109,44 @@
                                 echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['colors'].'</div></td>';
                                 echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['locations'].'</td>';
 
-				echo "<script>console.log(".$_POST.")</script>";
+				echo "<script>console.log(".json_encode($_POST).")</script>";
 				if (! empty($_POST["send"])) {
-					echo '<script>console.log("i received something: '.$_POST.'")</script>';
 					if (! empty($_POST["adjective"])) {
-						$adjective = filter_var($_POST["adjective"], FILTER_SANITIZE_STRING);
+						$word = filter_var($_POST["adjective"], FILTER_SANITIZE_STRING);
 						$postURL='http://adjectives.'.$NS.'/adjectives';
-						$postBODY = json_encode( array( "name" => $adjective));
+						$payload = json_encode(array("name" => $word));
 					}
 					if (! empty($_POST["adjective"])) {
-						$animal = filter_var($_POST["animal"], FILTER_SANITIZE_STRING);
+						$word = filter_var($_POST["animal"], FILTER_SANITIZE_STRING);
                                                 $postURL='http://animals.'.$NS.'/animals';
-                                                $postBODY = json_encode( array( "name" => $animal));
+                                                $payload = json_encode( array( "name" => $word));
 					}
 					if (! empty($_POST["color"])) {
-						$color = filter_var($_POST["color"], FILTER_SANITIZE_STRING);
+						$word = filter_var($_POST["color"], FILTER_SANITIZE_STRING);
                                                 $postURL='http://colors.'.$NS.'/colors';
-                                                $postBODY = json_encode( array( "name" => $color));
+                                                $payload = json_encode( array( "name" => $word));
 					}
 					if (! empty($_POST["location"])) {
-						$location = filter_var($_POST["location"], FILTER_SANITIZE_STRING);
+						$word = filter_var($_POST["location"], FILTER_SANITIZE_STRING);
                                                 $postURL='http://locations.'.$NS.'/locations';
-                                                $postBODY = json_encode( array( "name" => $location));
+                                                $payload = json_encode( array( "name" => $word));
 					}
-					$postCH = curl_init();
-					curl_setopt($postCH, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($postCH, CURLOPT_VERBOSE, true);
-					curl_setopt($postCH, CURLOPT_URL,$postURL);
-					curl_setopt($postCH, CURLOPT_POSTFIELDS, $postBODY);
-					curl_setopt($postCH, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-					$res=curl_exec($postCH);
-					$curl_info = curl_getinfo($postCH);
-					$curl_error = curl_error($postCH);
-					echo '<script>console.log("error: '.$curl_error.'");</script>';
-					echo '<script>console.log("info: '.$curl_info.'");</script>';
-                                	curl_close($postCH);
+					$ch2 = curl_init();
+					curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch2, CURLOPT_VERBOSE, true);
+					curl_setopt($ch2, CURLOPT_URL, $postURL);
+					curl_setopt($ch2, CURLOPT_POSTFIELDS, $payload);
+					curl_setopt($ch2, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+					#echo '<script>console.log("curl opts: '.$ch2.'");</script>';
+					$res=curl_exec($ch2);
+					$curl_info = json_encode(curl_getinfo($ch2));
+					$curl_error = json_encode(curl_error($ch2));
+					#echo '<script>console.log("error: '.$curl_error.'");</script>';
+					#echo '<script>console.log("info: '.$curl_info.'");</script>';
+					#echo '<script>console.log("res: '.$res.'");</script>';
+                                	curl_close($ch2);
 
-					echo '<div id="success">Your new word as been successfully posted!'.$res.'</div>';
+					echo '<div id="success">Your new word '.$word.' as been successfully posted!</div>';
 				}
                     ?>
                                 </tr>
