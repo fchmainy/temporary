@@ -2,7 +2,7 @@
                 <HEAD>
                         <title>Random Name Generator</title>
                         <script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
-			<script src="./js/script.js"></script> 
+			<script src="./js/script.js"></script>
 			<style>
 				body {
  					height: 800px;
@@ -15,7 +15,7 @@
 			</style>
 			<link rel="stylesheet" href="./css/style.css" />
                 </HEAD>
-                <BODY> 
+                <BODY>
                     <div id="adjective-popup">
                         <form class="word-form" action="" id="adjective-form" method="post" enctype="multipart/form-data">
                             <h2>Add an adjective</h2>
@@ -90,7 +90,7 @@
                                 </tr>
                                 </tbody>
                     </table>
-                    
+
                     <table class="center" style="height: 72px;" width="498">
                     <tbody>
                                 <tr>
@@ -103,41 +103,49 @@
                                 $result=curl_exec($ch);
                                 curl_close($ch);
                                 $generated_name=json_decode($result, true);
-                                #echo '<td>';    
-                                echo '<td><div style="font-family:Courier; color:green;">kind</div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">leopard of the </div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">yellow</div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">valley</div></td>';
+                                #echo '<td>';
+                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['adjectives'].'</div></td>';
+                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['animals'].' of the </div></td>';
+                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['colors'].'</div></td>';
+                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['locations'].'</td>';
 
-
-				if (! empty($POST["send"])) {
+				echo "<script>console.log(".$_POST.")</script>";
+				if (! empty($_POST["send"])) {
+					echo '<script>console.log("i received something: '.$_POST.'")</script>';
 					if (! empty($_POST["adjective"])) {
 						$adjective = filter_var($_POST["adjective"], FILTER_SANITIZE_STRING);
-						$postURL='http://adjective.'.$NS.'/adjective';
-						$postBODY["adjective"] = $adjective;
+						$postURL='http://adjectives.'.$NS.'/adjectives';
+						$postBODY = json_encode( array( "name" => $adjective));
 					}
 					if (! empty($_POST["adjective"])) {
 						$animal = filter_var($_POST["animal"], FILTER_SANITIZE_STRING);
-                                                $postURL='http://animal.'.$NS.'/animal';
-                                                $postBODY["animal"] = $animal;
+                                                $postURL='http://animals.'.$NS.'/animals';
+                                                $postBODY = json_encode( array( "name" => $animal));
 					}
 					if (! empty($_POST["color"])) {
 						$color = filter_var($_POST["color"], FILTER_SANITIZE_STRING);
-                                                $postURL='http://color.'.$NS.'/color';
-                                                $postBODY["color"] = $color;
+                                                $postURL='http://colors.'.$NS.'/colors';
+                                                $postBODY = json_encode( array( "name" => $color));
 					}
 					if (! empty($_POST["location"])) {
 						$location = filter_var($_POST["location"], FILTER_SANITIZE_STRING);
-                                                $postURL='http://location.'.$NS.'/location';
-                                                $postBODY["location"] = $location;
+                                                $postURL='http://locations.'.$NS.'/locations';
+                                                $postBODY = json_encode( array( "name" => $location));
 					}
 					$postCH = curl_init();
 					curl_setopt($postCH, CURLOPT_RETURNTRANSFER, true);
-                                	curl_setopt($postCH, CURLOPT_URL,$url);
-                                	$res=curl_exec($postCH);
+					curl_setopt($postCH, CURLOPT_VERBOSE, true);
+					curl_setopt($postCH, CURLOPT_URL,$postURL);
+					curl_setopt($postCH, CURLOPT_POSTFIELDS, $postBODY);
+					curl_setopt($postCH, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+					$res=curl_exec($postCH);
+					$curl_info = curl_getinfo($postCH);
+					$curl_error = curl_error($postCH);
+					echo '<script>console.log("error: '.$curl_error.'");</script>';
+					echo '<script>console.log("info: '.$curl_info.'");</script>';
                                 	curl_close($postCH);
-					
-					echo '<div id="success">Your new word as been successfully posted!</div>'
+
+					echo '<div id="success">Your new word as been successfully posted!'.$res.'</div>';
 				}
                     ?>
                                 </tr>
