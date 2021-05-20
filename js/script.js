@@ -7,7 +7,7 @@ $(document).ready(function () {
         var valid = true;
         $(".info").html("");
         $("inputBox").removeClass("input-error");
-        
+
         var adjective = $("#adjective").val();
 
         if (adjective == "") {
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
         var animal = $("#animal").val();
 
-        if (adjective == "") {
+        if (animal == "") {
             $("#animal-info").html("required.");
             $("#animal").addClass("input-error");
         }
