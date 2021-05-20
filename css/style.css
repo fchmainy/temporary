@@ -8,9 +8,9 @@ header {
         }
 
 body {
-    color: #232323;
-    font-size: 0.95em;    
-    font-family: arial;
+    position: relative;
+    height: 100vh;
+    margin: 0;
 }
 
 div#success {
@@ -125,4 +125,19 @@ div#success {
 
 .input-error {
     border: #e66262 1px solid;
+}
+
+h1 {
+        position: absolute;
+        text-align: center;
+        top: 65%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%);
+        border-radius: 15px 50px;
+        background: linear-gradient(to top left, DimGray, transparent 95%);
+        padding: 15px;
+        width: 700px;
+        height: 50px;
+        justify-content: center;
 }
