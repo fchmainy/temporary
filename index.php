@@ -7,7 +7,7 @@
 				body {
  					height: 800px;
 					text-align: center;
- 					background: url('./images/background.jpeg');
+ 					background: url('./images/background.jpg');
  					color: white;
  					padding: 100px;
  					background-repeat: no-repeat;
@@ -116,20 +116,22 @@
 						$postURL='http://adjectives.'.$NS.'/adjectives';
 						$payload = json_encode(array("name" => $word));
 					}
-					if (! empty($_POST["adjective"])) {
+					if (! empty($_POST["animal"])) {
 						$word = filter_var($_POST["animal"], FILTER_SANITIZE_STRING);
-                                                $postURL='http://animals.'.$NS.'/animals';
-                                                $payload = json_encode( array( "name" => $word));
+						echo '<script>console.log("error: '.$word.'");</script>';
+						$postURL='http://animals.'.$NS.'/animals';
+						echo '<script>console.log("error: '.$postURL.'");</script>';
+                                                $payload = json_encode(array( "name" => $word));
 					}
 					if (! empty($_POST["color"])) {
 						$word = filter_var($_POST["color"], FILTER_SANITIZE_STRING);
                                                 $postURL='http://colors.'.$NS.'/colors';
-                                                $payload = json_encode( array( "name" => $word));
+                                                $payload = json_encode(array( "name" => $word));
 					}
 					if (! empty($_POST["location"])) {
 						$word = filter_var($_POST["location"], FILTER_SANITIZE_STRING);
                                                 $postURL='http://locations.'.$NS.'/locations';
-                                                $payload = json_encode( array( "name" => $word));
+                                                $payload = json_encode(array( "name" => $word));
 					}
 					$ch2 = curl_init();
 					curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
