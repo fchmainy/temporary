@@ -1,15 +1,19 @@
  <HTML>
                 <HEAD>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PC5HX2H');</script>
+<!-- End Google Tag Manager -->
+
                         <title>Random Name Generator</title>
                         <script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
 			<script src="./js/script.js"></script>
 			<style>
 				body {
- 					height: 800px;
-					text-align: center;
  					background: url('./images/background.jpg');
- 					color: white;
- 					padding: 100px;
  					background-repeat: no-repeat;
         			}
 			</style>
@@ -81,7 +85,7 @@
                         </form>
                     </div>
 
-                    <table style="height: 72px;" width="498">
+                    <table class="center" style="height: 72px;" width="800">
                                 <tbody>
                                 <tr>
                                 <td style="width: 158px;"><img src="./images/shape.png" alt="" /></td>
@@ -90,8 +94,10 @@
                                 </tr>
                                 </tbody>
                     </table>
-
-                    <table class="center" style="height: 72px;" width="498">
+		    <table style="height: 300px;" width="800">
+		    <tr></tr>
+                    </table>
+                    <table class="center" style="background: linear-gradient(to top left, DimGray, transparent 95%); border-radius: 15px 50px;" width="800">
                     <tbody>
                                 <tr>
                     <?php
@@ -104,10 +110,11 @@
                                 curl_close($ch);
                                 $generated_name=json_decode($result, true);
                                 #echo '<td>';
-                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['adjectives'].'</div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['animals'].' of the </div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['colors'].'</div></td>';
-                                echo '<td><div style="font-family:Courier; color:green;">'.$generated_name['locations'].'</td>';
+                                echo '<td><div style="font-family:Courier; text-align:center; color:green; font-size: 32; font-weight: bold;">'.$generated_name['adjectives'].'</div></td>';
+                                echo '<td><div style="font-family:Courier; text-align:center; color:green; font-size: 32; font-weight: bold;">'.$generated_name['animals'].'</div></td>';
+                                echo '<td><div style="font-family:Courier; text-align:center; color:green; font-size: 32; font-weight: bold;"> of the </div></td>';
+				echo '<td><div style="font-family:Courier; text-align:center; color:green; font-size: 32; font-weight: bold;">'.$generated_name['colors'].'</div></td>';
+                                echo '<td><div style="font-family:Courier; text-align:center; color:green; font-size: 32; font-weight: bold;">'.$generated_name['locations'].'</div></td>';
 
 				echo "<script>console.log(".json_encode($_POST).")</script>";
 				if (! empty($_POST["send"])) {
@@ -153,10 +160,11 @@
                     ?>
                                 </tr>
                                 <tr>
-                                <td><div id="plus-adjective-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
-                                <td><div id="plus-animal-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
-                                <td><div id="plus-color-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
-                                <td><div id="plus-location-icon"><img src="./icon/plus.png" width="50" height="50" alt="Add a location to the API" /></div></td>
+                                <td align=center><div id="plus-adjective-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
+                                <td align=center><div id="plus-animal-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
+				<td align=center><div></div></td>
+                                <td align=center><div id="plus-color-icon"><img src="./icon/plus.png" width="50" height="50" alt="" /></div></td>
+                                <td align=center><div id="plus-location-icon"><img src="./icon/plus.png" width="50" height="50" alt="Add a location to the API" /></div></td>
                                 </tr>
                     </tbody>
                     </table>
